@@ -1,33 +1,19 @@
-pipeline
-{
-agent any
-stages
-{
-  stage{
-  steps('container')
-{
-echo:"from git pipeline started"
-}
-}
-stage{
-    steps('completed')
-    {
-    echo:"from git pipeline completed"
-  } 
-}
-stage{
-  steps('compile')
-{
-  echo:"compiling source code"
-  }
-}
-stage{
- steps('run')
-{
-echo:"running unit test"
-}
-}
-}
-}
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
+    }
+    
+  
 
 
