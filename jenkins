@@ -1,0 +1,33 @@
+pipeline
+{
+agent any
+stages
+{
+  stage{
+  steps('container')
+{
+echo:"from git pipeline started"
+}
+}
+stage{
+    steps('completed')
+    {
+    echo:"from git pipeline completed"
+  } 
+}
+stage{
+  steps('compile')
+{
+  echo:"compiling source code"
+  }
+}
+stage{
+ steps('run')
+{
+echo:"running unit test"
+}
+}
+}
+}
+
+
