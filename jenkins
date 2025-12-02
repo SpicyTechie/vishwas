@@ -1,19 +1,17 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-                junit 'target/surefire-reports/*.xml'
-            }
-        }
+pipeline
+{
+agent any
+stages
+{
+    stage
+    {
+    steps('container')
+    {
+    echo:"from git pipeline line started"
     }
-    
+}
+}
+}
   
 
 
